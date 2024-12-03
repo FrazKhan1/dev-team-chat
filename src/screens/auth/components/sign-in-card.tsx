@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -25,8 +26,7 @@ const SignInCard = ({ setState }: SignInCardProps) => {
   const [password, setPassword] = useState("");
 
   const handleProvider = (value: "github" | "google") => {
-    console.log("hit the provider")
-    return signIn(value);
+    signIn(value);
   };
 
   return (
