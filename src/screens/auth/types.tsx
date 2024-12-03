@@ -1,1 +1,1 @@
-export type signInFlow = "signIn" | "signOut"
+export type signInFlow = "signIn" | "signUp"

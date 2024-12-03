@@ -8,11 +8,20 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import React from "react";
+import React, { useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { signInFlow } from "../types";
 
-const SignInCard = () => {
+interface SignInCardProps {
+  setState: (state: signInFlow) => void;
+}
+
+const SignInCard = ({ setState }: SignInCardProps) => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
   return (
     <Card className="h-full w-full p-8">
       <CardHeader className="px-0 pt-0">
@@ -26,17 +35,17 @@ const SignInCard = () => {
         <form className="space-y-2.5">
           <Input
             disabled={false}
-            value=""
+            value={email}
             placeholder="Email"
-            onChange={() => {}}
+            onChange={(e) => setEmail(e.target.value)}
             type="email"
             required
           />
           <Input
             disabled={false}
-            value=""
+            value={password}
             placeholder="Password"
-            onChange={() => {}}
+            onChange={(e) => setPassword(e.target.value)}
             type="password"
             required
           />
@@ -67,7 +76,12 @@ const SignInCard = () => {
         </div>
         <p className="text-xs text-muted-foreground">
           Don&apos;t have an account?{" "}
-          <span className="text-sky-500 hover:underline">Sign Up</span>
+          <span
+            onClick={() => setState("signUp")}
+            className="text-sky-500 hover:underline cursor-pointer"
+          >
+            Sign Up
+          </span>
         </p>
       </CardContent>
     </Card>
