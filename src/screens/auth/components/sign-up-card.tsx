@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import React, { useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { signInFlow } from "../types";
@@ -18,6 +18,7 @@ interface SignUpCardProps {
 }
 
 const SignUpCard = ({ setState }: SignUpCardProps) => {
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
