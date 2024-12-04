@@ -35,9 +35,6 @@ const SignUpCard = ({ setState }: SignUpCardProps) => {
       return setError("Passwords do not match");
     }
     signIn("password", { email, password, flow: "signUp" })
-      .then(() => {
-        setState("signIn");
-      })
       .catch(() => {
         setPending(false);
         setError("Email already registered");
