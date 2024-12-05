@@ -1,8 +1,10 @@
 "use client";
 import UserButton from "@/screens/auth/components/user-button";
 import { UseGetWorkspaces } from "@/screens/workspaces/api/use-get-workspaces";
+import { useCreateWorkspaceModel } from "@/screens/workspaces/store/use-create-workspace-model";
 import React, { useEffect, useMemo } from "react";
 const Home = () => {
+  const [open, setOpen] = useCreateWorkspaceModel();
   const { isLoading, data } = UseGetWorkspaces();
 
   const workspaceID = useMemo(() => data?.[0]?._id, [data]);
@@ -12,10 +14,10 @@ const Home = () => {
 
     if (workspaceID) {
       console.log("Redirect workspace");
-    } else {
-      console.log("Redirect sign-in");
+    } else if (!open) {
+      setOpen(true);
     }
-  }, [workspaceID, isLoading]);
+  }, [workspaceID, isLoading, open, setOpen]);
   return <UserButton />;
 };
 
