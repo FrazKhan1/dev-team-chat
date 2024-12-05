@@ -2,22 +2,24 @@
 import UserButton from "@/screens/auth/components/user-button";
 import { UseGetWorkspaces } from "@/screens/workspaces/api/use-get-workspaces";
 import { useCreateWorkspaceModel } from "@/screens/workspaces/store/use-create-workspace-model";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useMemo } from "react";
 const Home = () => {
+  const router = useRouter();
   const [open, setOpen] = useCreateWorkspaceModel();
   const { isLoading, data } = UseGetWorkspaces();
 
-  const workspaceID = useMemo(() => data?.[0]?._id, [data]);
+  const workSpaceId = useMemo(() => data?.[0]?._id, [data]);
 
   useEffect(() => {
     if (isLoading) return;
 
-    if (workspaceID) {
-      console.log("Redirect workspace");
+    if (workSpaceId) {
+      router.replace(`/workspace/${workSpaceId}`);
     } else if (!open) {
       setOpen(true);
     }
-  }, [workspaceID, isLoading, open, setOpen]);
+  }, [workSpaceId, isLoading, open, setOpen, router]);
   return <UserButton />;
 };
 

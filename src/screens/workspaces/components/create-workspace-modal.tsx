@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input } from "@/components/ui/input";
 import { useCreateWorkspaceModel } from "../store/use-create-workspace-model";
 import {
@@ -7,12 +8,32 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { useCreateWorkspace } from "../api/use-create-workspaces";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export const CreateWorkSpaceModal = () => {
+  const router = useRouter();
   const [open, setOpen] = useCreateWorkspaceModel();
+  const [name, setName] = useState("");
+  const { mutate, isPending } = useCreateWorkspace();
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    mutate(
+      { name },
+      {
+        onSuccess(id) {
+              router.push(`/workspace/${id}`);
+              handleClose()
+        },
+      }
+    );
   };
 
   return (
@@ -21,19 +42,20 @@ export const CreateWorkSpaceModal = () => {
         <DialogHeader>
           <DialogTitle>Add a workspace</DialogTitle>
         </DialogHeader>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Input
-            value=""
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             placeholder="e.g Work, Home, Product, Meetings"
             minLength={3}
             autoFocus
-            disabled={false}
+            disabled={isPending}
             required
           />
+          <div className="flex justify-end">
+            <Button disabled={isPending}>Add</Button>
+          </div>
         </form>
-        <div className="flex justify-end">
-          <Button>Add</Button>
-        </div>
       </DialogContent>
     </Dialog>
   );
