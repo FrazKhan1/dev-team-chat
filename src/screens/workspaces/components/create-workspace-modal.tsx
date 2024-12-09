@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { useCreateWorkspace } from "../api/use-create-workspaces";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export const CreateWorkSpaceModal = () => {
   const router = useRouter();
@@ -29,8 +30,9 @@ export const CreateWorkSpaceModal = () => {
       { name },
       {
         onSuccess(id) {
-              router.push(`/workspace/${id}`);
-              handleClose()
+          toast.success("Workspace created successfully");
+          router.push(`/workspace/${id}`);
+          handleClose();
         },
       }
     );
