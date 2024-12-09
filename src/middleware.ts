@@ -18,7 +18,6 @@ export default convexAuthNextjsMiddleware(async (request, { convexAuth }) => {
       return nextjsMiddlewareRedirect(request, "/");
     }
   } catch (error) {
-    console.error("Middleware error:", error);
     return new Response("Internal Server Error", { status: 500 });
   }
 });

@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { useWorkSpaceId } from "@/hooks/use-workspace-id";
-import { UseGetWorkspace } from "@/screens/workspaces/api/use-get-workspace";
+import { useGetWorkspace } from "@/screens/workspaces/api/use-get-workspace";
 import { Info, Search } from "lucide-react";
 
 export const Toolbar = () => {
   const workSpaceId = useWorkSpaceId();
-  const { data } = UseGetWorkspace({ id: workSpaceId });
+  const { data } = useGetWorkspace({ id: workSpaceId });
   return (
     <nav className="bg-[#481349] flex items-center justify-between h-10 p-1.5 ">
       <div className="flex-1" />

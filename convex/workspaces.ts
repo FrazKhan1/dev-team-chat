@@ -13,13 +13,13 @@ export const create = mutation({
       throw new Error("Client is not authenticated!");
     }
 
-    const workspaceId = await ctx.db.insert("workspaces", {
+    const workSpaceId = await ctx.db.insert("workspaces", {
       name: args.name,
       userId,
       joinCode: "1234",
     });
 
-    return workspaceId;
+    return workSpaceId;
   },
 });
 
@@ -39,6 +39,11 @@ export const getById = query({
     if (!userId) {
       throw new Error("Client is not authenticated!");
     }
-    return await ctx.db.get(args.id);
+    const workspace = await ctx.db.get(args.id);
+    if (!workspace) {
+      throw new Error("Workspace not found!");
+    }
+
+    return workspace;
   },
 });
