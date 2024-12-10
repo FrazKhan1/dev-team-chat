@@ -54,7 +54,7 @@ export const CreateWorkSpaceModal = () => {
             disabled={isPending}
             required
           />
-          <div className="flex justify-end">
+          <div className="flex justify-end pt-2 ">
             <Button disabled={isPending}>Add</Button>
           </div>
         </form>
