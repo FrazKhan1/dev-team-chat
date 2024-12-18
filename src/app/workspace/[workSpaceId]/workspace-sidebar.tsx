@@ -12,6 +12,8 @@ import { WorkspaceHeader } from "./workspace-header";
 import { SidebarItem } from "./sidebar-item";
 import { useGetChannels } from "@/controllers/channels/api/use-get-channels";
 import { WorkspaceSection } from "./workspace-section";
+import { useGetMembers } from "@/controllers/channels/api/use-get-members";
+import { UserItem } from "./user-item";
 
 export const WorkspaceSidebar = () => {
   const workSpaceId = useWorkSpaceId();
@@ -24,6 +26,9 @@ export const WorkspaceSidebar = () => {
   });
 
   const { data: channels, isLoading: channelLoading } = useGetChannels({
+    workSpaceId,
+  });
+  const { data: members, isLoading: membersLoading } = useGetMembers({
     workSpaceId,
   });
 
@@ -53,19 +58,35 @@ export const WorkspaceSidebar = () => {
       <div className="flex flex-col px-2 mt-3">
         <SidebarItem lable="Threads" icon={MessageSquareText} id="threads" />
         <SidebarItem lable="Drafts & Sent" icon={SendHorizontal} id="drafts" />
-        <WorkspaceSection label="Channels" hint="new channel" onNew={() => []}>
-          {channels?.map((item) => {
-            return (
-              <SidebarItem
-                key={item?._id}
-                lable={item?.name}
-                icon={HashIcon}
-                id={item?._id}
-              />
-            );
-          })}
-        </WorkspaceSection>
       </div>
+      <WorkspaceSection label="Channels" hint="new channel" onNew={() => []}>
+        {channels?.map((item) => {
+          return (
+            <SidebarItem
+              key={item?._id}
+              lable={item?.name}
+              icon={HashIcon}
+              id={item?._id}
+            />
+          );
+        })}
+      </WorkspaceSection>
+      <WorkspaceSection
+        label="Direct Messages"
+        hint="new direct message"
+        onNew={() => []}
+      >
+        {members?.map((item) => {
+          return (
+            <UserItem
+              key={item?._id}
+              id={item?._id}
+              label={item.user.name}
+              image={item?.user.image}
+            />
+          );
+        })}
+      </WorkspaceSection>
     </div>
   );
 };
