@@ -39,9 +39,9 @@ export const UserItem = ({ id, label, image, variant }: UserItemProps) => {
       asChild
     >
       <Link href={`/workspace/${workSpaceId}/channel/${id}`}>
-        <Avatar className="size-5 rounded-mg mr-1">
+        <Avatar className="size-5 rounded-md mr-1">
           <AvatarImage className="rounded-md" src={image} />
-          <AvatarFallback className="rounded-md">
+          <AvatarFallback className="rounded-md bg-sky-500 text-white ">
             {avatarFallback}
           </AvatarFallback>
         </Avatar>
