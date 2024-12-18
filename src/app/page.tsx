@@ -1,7 +1,7 @@
 "use client";
-import UserButton from "@/screens/auth/components/user-button";
-import { useGetWorkspaces } from "@/screens/workspaces/api/use-get-workspaces";
-import { useCreateWorkspaceModel } from "@/screens/workspaces/store/use-create-workspace-model";
+import UserButton from "@/controllers/auth/components/user-button";
+import { useGetWorkspaces } from "@/controllers/workspaces/api/use-get-workspaces";
+import { useCreateWorkspaceModel } from "@/controllers/workspaces/store/use-create-workspace-model";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useMemo } from "react";
 const Home = () => {

@@ -7,9 +7,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useWorkSpaceId } from "@/hooks/use-workspace-id";
-import { useGetWorkspace } from "@/screens/workspaces/api/use-get-workspace";
-import { useGetWorkspaces } from "@/screens/workspaces/api/use-get-workspaces";
-import { useCreateWorkspaceModel } from "@/screens/workspaces/store/use-create-workspace-model";
+import { useGetWorkspace } from "@/controllers/workspaces/api/use-get-workspace";
+import { useGetWorkspaces } from "@/controllers/workspaces/api/use-get-workspaces";
+import { useCreateWorkspaceModel } from "@/controllers/workspaces/store/use-create-workspace-model";
 import { Loader, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 

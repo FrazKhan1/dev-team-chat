@@ -11,8 +11,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { useConfirm } from "@/hooks/use-confirm";
 import { useWorkSpaceId } from "@/hooks/use-workspace-id";
-import { useRemoveWorkspace } from "@/screens/workspaces/api/use-remove-workspaces";
-import { useUpdateWorkspace } from "@/screens/workspaces/api/use-update-workspaces";
+import { useRemoveWorkspace } from "@/controllers/workspaces/api/use-remove-workspaces";
+import { useUpdateWorkspace } from "@/controllers/workspaces/api/use-update-workspaces";
 import { TrashIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";

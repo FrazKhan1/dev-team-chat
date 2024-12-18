@@ -1,5 +1,5 @@
 "use client";
-import { CreateWorkSpaceModal } from "@/screens/workspaces/components/create-workspace-modal";
+import { CreateWorkSpaceModal } from "@/controllers/workspaces/components/create-workspace-modal";
 import { useEffect, useState } from "react";
 
 export const Modals = () => {

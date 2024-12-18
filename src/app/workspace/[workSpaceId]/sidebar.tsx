@@ -1,4 +1,4 @@
-import UserButton from "@/screens/auth/components/user-button";
+import UserButton from "@/controllers/auth/components/user-button";
 import { WorkspaceSwitcher } from "./workspace-switcher";
 import { SidebarButton } from "./sidebar-button";
 import { Bell, Home, MessagesSquare, MoreHorizontal } from "lucide-react";
