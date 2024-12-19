@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useWorkSpaceId } from "@/hooks/use-workspace-id";
 import { useCurrentMember } from "@/controllers/members/api/user-current-member";
 import { useGetWorkspace } from "@/controllers/workspaces/api/use-get-workspace";
