@@ -14,9 +14,12 @@ import { useGetChannels } from "@/controllers/channels/api/use-get-channels";
 import { WorkspaceSection } from "./workspace-section";
 import { useGetMembers } from "@/controllers/channels/api/use-get-members";
 import { UserItem } from "./user-item";
+import { useCreateChannelModel } from "@/controllers/channels/store/use-create-channel-model";
 
 export const WorkspaceSidebar = () => {
   const workSpaceId = useWorkSpaceId();
+
+  const [_open, setOpen] = useCreateChannelModel();
 
   const { data: member, isLoading: memberLoading } = useCurrentMember({
     workSpaceId,
@@ -59,7 +62,11 @@ export const WorkspaceSidebar = () => {
         <SidebarItem lable="Threads" icon={MessageSquareText} id="threads" />
         <SidebarItem lable="Drafts & Sent" icon={SendHorizontal} id="drafts" />
       </div>
-      <WorkspaceSection label="Channels" hint="new channel" onNew={() => []}>
+      <WorkspaceSection
+        label="Channels"
+        hint="new channel"
+        onNew={member?.role === "admin" ? () => setOpen(true) : undefined}
+      >
         {channels?.map((item) => {
           return (
             <SidebarItem
