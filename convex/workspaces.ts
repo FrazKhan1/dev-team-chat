@@ -10,6 +10,38 @@ const generateCode = () => {
   return code;
 };
 
+export const newJoinCode = mutation({
+  args: {
+    workSpaceId: v.id("workspaces"),
+  },
+  handler: async (ctx, args) => {
+    const userId = await getAuthUserId(ctx);
+
+    if (userId === null) {
+      throw new Error("Client is not authenticated!");
+    }
+
+    const member = await ctx.db
+      .query("members")
+      .withIndex("by_workspace_id_user_id", (q) =>
+        q.eq("workSpaceId", args.workSpaceId).eq("userId", userId)
+      )
+      .unique();
+
+    if (!member || member.role !== "admin") {
+      throw new Error("Unauthorized");
+    }
+
+    const joinCode = generateCode();
+
+    await ctx.db.patch(args.workSpaceId, {
+      joinCode,
+    });
+
+    return args.workSpaceId;
+  },
+});
+
 export const create = mutation({
   args: {
     name: v.string(),
