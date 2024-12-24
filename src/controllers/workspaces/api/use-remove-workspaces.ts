@@ -36,7 +36,8 @@ export const useRemoveWorkspace = () => {
         const response = await mutation(values);
         options?.onSuccess?.(response);
       } catch (error) {
-        setStatus("error");
+        options?.onError?.(error as Error);
+        
         if (options?.throwError) {
           throw error;
         }
