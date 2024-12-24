@@ -37,6 +37,7 @@ export const useNewJoinCode = () => {
         options?.onSuccess?.(response);
       } catch (error) {
         setStatus("error");
+        options?.onError?.(error as Error);
         if (options?.throwError) {
           throw error;
         }

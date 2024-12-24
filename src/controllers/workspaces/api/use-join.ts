@@ -4,7 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
 
-type RequestType = { workSpaceId: Id<"workspaces">, joinCode: string};
+type RequestType = { workSpaceId: Id<"workspaces">; joinCode: string };
 type ResponseType = Id<"workspaces"> | null;
 
 type Options = {
@@ -30,13 +30,17 @@ export const useJoin = () => {
   const mutate = useCallback(
     async (values: RequestType, options?: Options) => {
       try {
+        console.log("join code run");
         setData(null);
         setError(null);
         setStatus("pending");
         const response = await mutation(values);
+        console.log("response", response);
+
         options?.onSuccess?.(response);
       } catch (error) {
         setStatus("error");
+        options?.onError?.(error as Error);
         if (options?.throwError) {
           throw error;
         }
