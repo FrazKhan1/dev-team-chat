@@ -9,7 +9,6 @@ interface ChatInputProps {
 }
 
 const ChatInput = ({ placeholder }: ChatInputProps) => {
-  console.log("placeholder === ", placeholder);
 
   const editorRef = useRef<Quill | null>(null);
   return (
@@ -19,7 +18,6 @@ const ChatInput = ({ placeholder }: ChatInputProps) => {
         onSubmit={() => {}}
         disabled={false}
         innerRef={editorRef}
-        variant="update"
       />
     </div>
   );
