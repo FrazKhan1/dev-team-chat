@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import React from "react";
 
-const Editor = dynamic(() => import("@/components/editor"));
+const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
 
 const ChatInput = () => {
   return (
