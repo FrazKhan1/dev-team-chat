@@ -21,6 +21,15 @@ const schema = defineSchema({
     name: v.string(),
     workSpaceId: v.id("workspaces"),
   }).index("by_workspace_id", ["workSpaceId"]),
+
+  messages: defineTable({
+    body: v.string(),
+    image: v.optional(v.id("_storage")),
+    memberId: v.id("members"),
+    workSpaceId: v.id("workspaces"),
+      
+    
+  })
 });
 
 export default schema;
