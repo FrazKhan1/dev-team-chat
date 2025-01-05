@@ -67,7 +67,7 @@ const SignUpCard = ({ setState }: SignUpCardProps) => {
         </div>
       )}
       <CardContent className="space-y-5  px-0 pb-0">
-        <form onSubmit={onSignUp} className="space-y-2.5">
+        <form onSubmit={onSignUp} className="flex flex-col space-y-2.5">
           <Input
             disabled={pending}
             value={name}

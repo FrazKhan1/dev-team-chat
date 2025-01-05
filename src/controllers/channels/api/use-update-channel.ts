@@ -4,8 +4,8 @@ import { useCallback, useMemo, useState } from "react";
 import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
 
-type RequestType = { id: Id<"workspaces"> };
-type ResponseType = Id<"workspaces"> | null;
+type RequestType = { name: string; id: Id<"channels"> };
+type ResponseType = Id<"channels"> | null;
 
 type Options = {
   onSuccess?: (data: ResponseType) => void;
@@ -14,7 +14,7 @@ type Options = {
   throwError?: boolean;
 };
 
-export const useRemoveWorkspace = () => {
+export const useUpdateChannel = () => {
   const [data, setData] = useState<ResponseType>(null);
   const [error, setError] = useState<ResponseType>(null);
   const [status, setStatus] = useState<
@@ -26,7 +26,7 @@ export const useRemoveWorkspace = () => {
   const isSuccess = useMemo(() => status === "success", [status]);
   const isSettled = useMemo(() => status === "settled", [status]);
 
-  const mutation = useMutation(api.workspaces.remove);
+  const mutation = useMutation(api.channels.update);
   const mutate = useCallback(
     async (values: RequestType, options?: Options) => {
       try {
@@ -36,8 +36,8 @@ export const useRemoveWorkspace = () => {
         const response = await mutation(values);
         options?.onSuccess?.(response);
       } catch (error) {
+        setStatus("error");
         options?.onError?.(error as Error);
-        
         if (options?.throwError) {
           throw error;
         }
