@@ -18,7 +18,6 @@ import { useWorkSpaceId } from "@/hooks/use-workspace-id";
 import { TrashIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, FormEvent, useMemo, useState } from "react";
-import { FaChevronDown } from "react-icons/fa";
 import { toast } from "sonner";
 
 interface HeaderProps {
@@ -102,7 +101,6 @@ const Header = ({ title }: HeaderProps) => {
               className="text-lg font-semibold px-2 overflow-hidden w-auto"
             >
               <span className="truncate"># {title}</span>
-              <FaChevronDown className="size-2.5 ml-2" />
             </Button>
           </DialogTrigger>
           <DialogContent className="p-0 bg-gray-50 overflow-hidden">
